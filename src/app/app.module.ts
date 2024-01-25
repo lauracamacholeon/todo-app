@@ -8,30 +8,28 @@ import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-
 import { FooterComponent } from './footer/footer.component';
 import { TodoModule } from './todos/todo.module';
 import { todoReducer } from './todos/reducers/todo.reducer';
 import { environment } from '../environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
+import { filterReducer } from './filter/filter.reducer';
+import { appReducers } from '../app.reducer';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    FooterComponent,
-  ],
+  declarations: [AppComponent, FooterComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     TodoModule,
-    StoreModule.forRoot({todos: todoReducer}),
+    StoreModule.forRoot(appReducers),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

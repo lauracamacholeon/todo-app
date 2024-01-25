@@ -1,8 +1,9 @@
-<li class="completed">
+<li (dblclick)="dobleClick()" [ngClass]="{'completed': todo.completado, 'editing' : editing}">
     <div class="view">
-        <input class="toggle" type="checkbox" checked>
-        <label>Taste JavaScript</label>
-        <button class="destroy"></button>
+        <input class="toggle" type="checkbox" [formControl]="completedCheck">
+        <label> {{ todo.texto }}</label>
+        <button (click)="deleteTask(todo.id)" class="destroy"></button>
     </div>
-    <input class="edit" value="Create a TodoMVC template">
+    <!-- pierda el foco se grabe o se dispare la accion -->
+    <input #inputTexto (blur)="editEnd()" (keyup.enter)="editEnd()" class="edit" [formControl]="txtInput">
 </li>
