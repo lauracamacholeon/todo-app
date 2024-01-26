@@ -3,6 +3,7 @@ import { Todo } from '../models/todo.model';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../app.reducer';
 import { FormControl } from '@angular/forms';
+import { filtersType } from '../../filter/filter.actions';
 
 @Component({
   selector: 'app-todo-list',
@@ -13,24 +14,17 @@ export class TodoListComponent {
   todos: Todo[] = [];
   editando = false;
   selected = 9999;
+
+  filterActive : filtersType = 'all';
+
   @ViewChild('inputFisico') txtInputFisico!: ElementRef;
 
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-
-
-    //  aqui ya se estan suscribiendo a los cambios de esa lista.
-    // si se desea colocar mas paginas tocaria cancelar la suscripcion 
-    this.store.select('todos').subscribe((todos) => {
-      console.log("desde lista");
-      
-      console.log(todos);
-      
-      this.todos = todos;
+    this.store.subscribe((state) => {
+      this.filterActive = state.filter;
+      this.todos = state.todos;
     });
   }
-
-  
-
 }

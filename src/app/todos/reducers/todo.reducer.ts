@@ -2,6 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 import {
   checkAll,
   crearTodo,
+  deleteCompleted,
   deleteTodo,
   editTodo,
   toggle,
@@ -33,5 +34,7 @@ export const todoReducer = createReducer(
 
   on(checkAll, (state) =>
     state.map((todo) => ({ ...todo, completado: !todo.completado }))
-  )
+  ),
+
+  on( deleteCompleted, (state)=> state.filter( todo=> !todo.completado )    )
 );

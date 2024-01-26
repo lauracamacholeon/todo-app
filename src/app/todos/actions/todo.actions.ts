@@ -25,3 +25,7 @@ export const checkAll = createAction(
   '[TODO] check all Todo',
   // props<{ completado: boolean }>()
 );
+
+export const deleteCompleted = createAction(
+  '[TODO] deleted completed Todo' 
+)

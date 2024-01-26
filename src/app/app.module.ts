@@ -15,6 +15,7 @@ import { environment } from '../environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
 import { filterReducer } from './filter/filter.reducer';
 import { appReducers } from '../app.reducer';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [AppComponent, FooterComponent],
